@@ -1,4 +1,4 @@
-package com.rrdsolutions.projectwarfdex
+package com.rrdsolutions.projectwardex
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -40,14 +39,15 @@ class MainActivity : AppCompatActivity() {
         val host = supportFragmentManager.findFragmentById(R.id.host) as NavHostFragment
         navController = host.navController
 
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+
+        //
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_archwingselection,
+        R.id.nav_primaryselection, R.id.nav_secondaryselection, R.id.nav_meleeselection), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem):Boolean {
         return if (item.itemId == R.id.search ){
-            Toast.makeText(this, "update clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "search clicked", Toast.LENGTH_SHORT).show()
             true
         }
         else super.onOptionsItemSelected(item)

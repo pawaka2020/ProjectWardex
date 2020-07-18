@@ -3,23 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_primaryselection">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.rrdsolutions.projectwarfdex.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_primaryselection"
+        android:name="com.rrdsolutions.projectwardex.ui.primary.PrimarySelectionFragment"
+        android:label="Primary"
+        tools:layout="@layout/fragment_primary_selection" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.rrdsolutions.projectwarfdex.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_secondaryselection"
+        android:name="com.rrdsolutions.projectwardex.ui.secondary.SecondarySelectionFragment"
+        android:label="Secondary"
+        tools:layout="@layout/fragment_secondary_selection" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.rrdsolutions.projectwarfdex.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_meleeselection"
+        android:name="com.rrdsolutions.projectwardex.ui.melee.MeleeSelectionFragment"
+        android:label="Melee"
+        tools:layout="@layout/fragment_melee_selection" />
+
+    <fragment
+        android:id="@+id/nav_archwingselection"
+        android:name="com.rrdsolutions.projectwardex.ui.archwing.ArchwingSelectionFragment"
+        android:label="Archwing"
+        tools:layout="@layout/fragment_archwing_selection" />
+
 </navigation>

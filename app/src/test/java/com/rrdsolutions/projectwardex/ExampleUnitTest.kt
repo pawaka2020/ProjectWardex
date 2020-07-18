@@ -1,4 +1,4 @@
-package com.rrdsolutions.projectwarfdex
+package com.rrdsolutions.projectwardex
 
 import org.junit.Test
 

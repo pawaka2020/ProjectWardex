@@ -1,4 +1,4 @@
-package com.rrdsolutions.projectwarfdex.ui.gallery
+package com.rrdsolutions.projectwardex.ui.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

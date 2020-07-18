@@ -1,4 +1,4 @@
-package com.rrdsolutions.projectwarfdex.ui.slideshow
+package com.rrdsolutions.projectwardex.ui.slideshow
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.rrdsolutions.projectwarfdex.R
+import com.rrdsolutions.projectwardex.R
 
 class SlideshowFragment : Fragment() {
 
