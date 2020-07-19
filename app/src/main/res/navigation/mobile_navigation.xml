@@ -9,7 +9,11 @@
         android:id="@+id/nav_primaryselection"
         android:name="com.rrdsolutions.projectwardex.ui.primary.PrimarySelectionFragment"
         android:label="Primary"
-        tools:layout="@layout/fragment_primary_selection" />
+        tools:layout="@layout/fragment_primary_selection" >
+        <action
+            android:id="@+id/toprimary"
+            app:destination="@id/nav_primary" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_secondaryselection"
@@ -28,5 +32,13 @@
         android:name="com.rrdsolutions.projectwardex.ui.archwing.ArchwingSelectionFragment"
         android:label="Archwing"
         tools:layout="@layout/fragment_archwing_selection" />
+
+    <fragment
+        android:id="@+id/nav_primary"
+        android:name="com.rrdsolutions.projectwardex.ui.primary.PrimaryFragment"
+        android:label="Archwing"
+        tools:layout="@layout/primary_fragment" />
+
+
 
 </navigation>

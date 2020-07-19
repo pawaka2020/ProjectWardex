@@ -39,13 +39,17 @@ class MainActivity : AppCompatActivity() {
         val host = supportFragmentManager.findFragmentById(R.id.host) as NavHostFragment
         navController = host.navController
 
-
-        //
         appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_archwingselection,
         R.id.nav_primaryselection, R.id.nav_secondaryselection, R.id.nav_meleeselection), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
+    
+
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)

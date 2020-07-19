@@ -1,13 +1,22 @@
 package com.rrdsolutions.projectwardex.ui
 
+import android.app.Activity
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.LayoutInflater.*
+import android.view.LayoutInflater.from
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
+import androidx.navigation.Navigation
 import com.rrdsolutions.projectwardex.R
-import kotlinx.android.synthetic.main.fragment_secondary_selection.*
+import com.rrdsolutions.projectwardex.ui.primary.PrimaryFragment
+
 
 class ButtonGridAdapter
     (context: Context, private val resource: Int, private val itemList: Array<String>?)
@@ -58,6 +67,10 @@ class ButtonGridAdapter2 (context: Context, private val resource: Int, private v
         }
 
         holder.button!!.text = this.itemList!![position]
+        holder.button!!.setOnClickListener{
+            Navigation.createNavigateOnClickListener(R.id.toprimary).onClick(holder.button)
+        }
+
         return cv
     }
 
