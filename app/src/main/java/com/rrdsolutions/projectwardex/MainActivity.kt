@@ -22,8 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.github.kittinunf.fuel.core.ResponseDeserializable
-import com.github.kittinunf.fuel.httpGet
+
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 

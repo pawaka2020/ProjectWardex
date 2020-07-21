@@ -19,7 +19,7 @@ class ExampleUnitTest {
     }
 }
 
-class HTTPCallTest{
+class RetrofitTest{
 
     @Test
     fun dogTest(){
@@ -32,6 +32,20 @@ class HTTPCallTest{
     fun cetusTest(){
         val url = "https://api.warframestat.us/pc/cetusCycle/"
         val result = RetrofitRepo(url).getCetus()
+        println(result)
+    }
+
+    @Test
+    fun weaponTest(){
+        val url = "https://api.warframestat.us/weapons/panthera/"
+        val result = RetrofitRepo(url).getWeapon()
+        println(result)
+    }
+
+    @Test
+    fun category(){
+        val url = "https://api.warframestat.us/weapons/"
+        val result = RetrofitRepo(url, "Bow").getCategory()
         println(result)
     }
 
