@@ -1,9 +1,6 @@
 package com.rrdsolutions.projectwardex
 
 import androidx.annotation.Keep
-import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.core.ResponseDeserializable
-import com.github.kittinunf.fuel.httpGet
 import com.google.gson.Gson
 import com.rrdsolutions.projectwardex.repo.RetrofitRepo
 import org.junit.Test
@@ -37,20 +34,5 @@ class HTTPCallTest{
         val result = RetrofitRepo(url).getCetus()
         println(result)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

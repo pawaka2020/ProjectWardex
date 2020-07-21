@@ -4,26 +4,20 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/test1"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Test1" />
 
         <item
-            android:id="@+id/nav_primaryselection"
+            android:id="@+id/test2"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Primary" />
+            android:title="Test2" />
 
         <item
-            android:id="@+id/nav_secondaryselection"
+            android:id="@+id/test3"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Secondary" />
-
-        <item
-            android:id="@+id/nav_meleeselection"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Melee" />
-
-        <item
-            android:id="@+id/nav_archwingselection"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Archwing" />
+            android:title="Test3" />
 
     </group>
 </menu>
