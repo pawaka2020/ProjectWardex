@@ -1,5 +1,11 @@
 package com.rrdsolutions.projectwardex
 
+import androidx.annotation.Keep
+import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuel.core.ResponseDeserializable
+import com.github.kittinunf.fuel.httpGet
+import com.google.gson.Gson
+import com.rrdsolutions.projectwardex.repo.RetrofitRepo
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -14,4 +20,37 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+}
+
+class HTTPCallTest{
+
+    @Test
+    fun dogTest(){
+        val dogurl = "https://dog.ceo/api/breeds/image/random/"
+        val test = RetrofitRepo(dogurl).getDog()
+        println(test)
+    }
+
+    @Test
+    fun cetusTest(){
+        val url = "https://api.warframestat.us/pc/cetusCycle/"
+        val result = RetrofitRepo(url).getCetus()
+        println(result)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

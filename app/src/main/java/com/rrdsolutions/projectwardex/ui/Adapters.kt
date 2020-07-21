@@ -68,7 +68,7 @@ class ButtonGridAdapter2 (context: Context, private val resource: Int, private v
 
         holder.button!!.text = this.itemList!![position]
         holder.button!!.setOnClickListener{
-            Navigation.createNavigateOnClickListener(R.id.toprimary).onClick(holder.button)
+            //Navigation.createNavigateOnClickListener(R.id.toprimary).onClick(holder.button)
         }
 
         return cv
