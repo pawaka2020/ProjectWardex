@@ -22,21 +22,21 @@ class ExampleUnitTest {
 class RetrofitTest{
 
     @Test
-    fun dogTest(){
+    fun dog(){
         val dogurl = "https://dog.ceo/api/breeds/image/random/"
         val test = RetrofitRepo(dogurl).getDog()
         println(test)
     }
 
     @Test
-    fun cetusTest(){
+    fun cetus(){
         val url = "https://api.warframestat.us/pc/cetusCycle/"
         val result = RetrofitRepo(url).getCetus()
         println(result)
     }
 
     @Test
-    fun weaponTest(){
+    fun weapon(){
         val url = "https://api.warframestat.us/weapons/panthera/"
         val result = RetrofitRepo(url).getWeapon()
         println(result)

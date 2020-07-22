@@ -104,7 +104,6 @@ data class Category(
     var type:String
 )
 
-
 interface ApiClient {
     @GET(".")
     suspend fun getDog(): Response<Dog>
@@ -158,8 +157,6 @@ class RetrofitRepo(val url:String, val type: String = ""){
         return result
     }
 
-
-
     fun getWeapon(): String{
         var result = ""
         runBlocking{
@@ -172,7 +169,6 @@ class RetrofitRepo(val url:String, val type: String = ""){
         }
         return result
     }
-
 
     fun getCategory():MutableList<String>{
         val result1 = mutableListOf<String>()
