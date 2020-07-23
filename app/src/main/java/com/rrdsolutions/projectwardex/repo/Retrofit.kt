@@ -110,7 +110,6 @@ data class CategoryFetch(
     var type: String
 )
 
-
 interface ApiClient {
     @GET(".")
     suspend fun getDog(): Response<Dog>
@@ -128,112 +127,118 @@ interface ApiClient {
     suspend fun categoryFetch():Response<List<CategoryFetch>>
 }
 
-class RetrofitRepo(val url:String, val param: String = ""){
-    companion object ApiAdapter{
-        lateinit var client:ApiClient
-    }
-    init{
-        client = Retrofit.Builder()
-            .baseUrl(url)
-            .client(OkHttpClient())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiClient::class.java)
-    }
+object Repo{
+    class RetrofitModel(val url:String, val param: String = ""){
+//        companion object ApiAdapter{
+//            lateinit var client:ApiClient
+//        }
+//        init{
+//            client = Retrofit.Builder()
+//                .baseUrl(url)
+//                .client(OkHttpClient())
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
+//                .create(ApiClient::class.java)
+//        }
+        var client = Retrofit.Builder()
+                        .baseUrl(url)
+                .client(OkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(ApiClient::class.java)
 
-    fun getDog(): String{
-        var result = ""
-        runBlocking{
-            client.getDog().let{
-                if (it.isSuccessful && it.body()!= null){
-                    val data = it.body()!!
-                    result = data.message
-                }
-            }
-        }
-        return result
-    }
-
-    fun getCetus(): String{
-        var result = ""
-        runBlocking{
-            client.getCetus().let{
-                if (it.isSuccessful && it.body()!= null){
-                    val data = it.body()!!
-                    result = data.id
-                }
-            }
-        }
-        return result
-    }
-
-    fun getWeapon(): String{
-        var result = ""
-        runBlocking{
-            client.getWeapon().let{
-                if (it.isSuccessful && it.body()!= null){
-                    val data = it.body()!!
-                    result = data.wikiaThumbnail
-                }
-            }
-        }
-        return result
-    }
-
-    fun getCategory():MutableList<String>{
-        val result1 = mutableListOf<String>()
-        runBlocking{
-            client.getCategory().let{
-                if (it.isSuccessful && it.body()!= null){
-                    val data = it.body()!!
-
-                    for (elements in data){
-                        if(elements.type == param)
-                        result1.add(elements.name)
-                    }
-
-                }
-            }
-        }
-        return result1
-    }
-
-    fun categoryFetchTest():List<String>{
-        val result1 = mutableListOf<String>()
-        runBlocking{
-            client.categoryFetch().let{
-                if (it.isSuccessful && it.body()!= null){
-                    val data = it.body()!!
-
-                    for (elements in data){
-                        if(elements.category == param)
-                            result1.add(elements.type)
-                    }
-
-                }
-            }
-        }
-        return result1.distinct()
-    }
-
-    fun categoryFetch(callback:(List<String>)->Unit){
-        val result1 = mutableListOf<String>()
-        GlobalScope.launch{
-            client.categoryFetch().let{
-                if (it.isSuccessful && it.body()!= null){
-                    val data = it.body()!!
-                    for (elements in data){
-                        if(elements.category == param && elements.type!="")
-                            result1.add(elements.type)
+        fun getDog(): String{
+            var result = ""
+            runBlocking{
+                client.getDog().let{
+                    if (it.isSuccessful && it.body()!= null){
+                        val data = it.body()!!
+                        result = data.message
                     }
                 }
             }
-            withContext(Dispatchers.Main) {
-                callback(result1.distinct())
+            return result
+        }
+
+        fun getCetus(): String{
+            var result = ""
+            runBlocking{
+                client.getCetus().let{
+                    if (it.isSuccessful && it.body()!= null){
+                        val data = it.body()!!
+                        result = data.id
+                    }
+                }
+            }
+            return result
+        }
+
+        fun getWeapon(): String{
+            var result = ""
+            runBlocking{
+                client.getWeapon().let{
+                    if (it.isSuccessful && it.body()!= null){
+                        val data = it.body()!!
+                        result = data.wikiaThumbnail
+                    }
+                }
+            }
+            return result
+        }
+
+        fun getCategory():MutableList<String>{
+            val result1 = mutableListOf<String>()
+            runBlocking{
+                client.getCategory().let{
+                    if (it.isSuccessful && it.body()!= null){
+                        val data = it.body()!!
+
+                        for (elements in data){
+                            if(elements.type == param)
+                                result1.add(elements.name)
+                        }
+
+                    }
+                }
+            }
+            return result1
+        }
+
+        fun categoryFetchTest():List<String>{
+            val result1 = mutableListOf<String>()
+            runBlocking{
+                client.categoryFetch().let{
+                    if (it.isSuccessful && it.body()!= null){
+                        val data = it.body()!!
+
+                        for (elements in data){
+                            if(elements.category == param)
+                                result1.add(elements.type)
+                        }
+
+                    }
+                }
+            }
+            return result1.distinct()
+        }
+
+        fun categoryFetch(callback:(List<String>)->Unit){
+            val result1 = mutableListOf<String>()
+            GlobalScope.launch{
+                client.categoryFetch().let{
+                    if (it.isSuccessful && it.body()!= null){
+                        val data = it.body()!!
+                        for (elements in data){
+                            if(elements.category == param && elements.type!="")
+                                result1.add(elements.type)
+                        }
+                    }
+                }
+                withContext(Dispatchers.Main) {
+                    callback(result1.distinct())
+                }
             }
         }
     }
-
 }
-
 

@@ -2,7 +2,8 @@ package com.rrdsolutions.projectwardex
 
 import androidx.annotation.Keep
 import com.google.gson.Gson
-import com.rrdsolutions.projectwardex.repo.RetrofitRepo
+import com.rrdsolutions.projectwardex.repo.Repo
+//import com.rrdsolutions.projectwardex.repo.RetrofitRepo
 import com.rrdsolutions.projectwardex.ui.selection.SelectionType
 import org.junit.Test
 
@@ -25,21 +26,21 @@ class RetrofitTest{
     @Test
     fun dog(){
         val dogurl = "https://dog.ceo/api/breeds/image/random/"
-        val test = RetrofitRepo(dogurl).getDog()
+        val test = Repo.RetrofitModel(dogurl).getDog()
         println(test)
     }
 
     @Test
     fun cetus(){
         val url = "https://api.warframestat.us/pc/cetusCycle/"
-        val result = RetrofitRepo(url).getCetus()
+        val result = Repo.RetrofitModel(url).getCetus()
         println(result)
     }
 
     @Test
     fun weapon(){
         val url = "https://api.warframestat.us/weapons/panthera/"
-        val result = RetrofitRepo(url).getWeapon()
+        val result = Repo.RetrofitModel(url).getWeapon()
         println(result)
     }
 
@@ -47,27 +48,20 @@ class RetrofitTest{
     fun category(){
         val url = "https://api.warframestat.us/weapons/"
         val url2 = "https://api.warframestat.us/items/"
-        val result = RetrofitRepo(url, "Bow").getCategory()
+        val result = Repo.RetrofitModel(url, "Bow").getCategory()
         println(result)
     }
     @Test
     fun categoryfetch(){
         val url = "https://api.warframestat.us/weapons/"
         val url2 = "https://api.warframestat.us/items/"
-        val result = RetrofitRepo(url, "Primary").categoryFetchTest()
+        val result = Repo.RetrofitModel(url, "Primary").categoryFetchTest()
         println(result)
 
         //doesnt' work with Archwing. Might need to manually search.
     }
 
-    @Test
-    fun x(){
-        val url = "https://api.warframestat.us/weapons/"
-        val url2 = "https://api.warframestat.us/items/"
-        RetrofitRepo(url, "Primary").categoryFetch(){result->
-            println(result)
-        }
-    }
+
 
 
 
