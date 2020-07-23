@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rrdsolutions.projectwardex.R
-import com.rrdsolutions.projectwardex.ui.ButtonGridAdapter
 import com.rrdsolutions.projectwardex.ui.ButtonGridAdapter2
 import kotlinx.android.synthetic.main.fragment_primary_selection.*
 
@@ -20,7 +19,7 @@ class PrimarySelectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val buttonlist = arrayOf("Rifles", "Shotguns", "Sniper Rifles", "Bows", "Exalted" )
         //grid.adapter = ButtonGridAdapter(this.requireContext(), 0, buttonlist )
-        grid.adapter = ButtonGridAdapter2(this.requireContext(), R.layout.button, buttonlist)
+        //grid.adapter = ButtonGridAdapter2(this.requireContext(), R.layout.button, buttonlist)
     }
 }
 

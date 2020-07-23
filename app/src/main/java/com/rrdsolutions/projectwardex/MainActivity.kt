@@ -24,6 +24,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
 
 import com.google.gson.Gson
+import com.rrdsolutions.projectwardex.ui.selection.SelectionType
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -56,18 +57,23 @@ class MainActivity : AppCompatActivity() {
             val nav = Navigation.findNavController(this, R.id.host)
             val bundle:Bundle
             when (it.itemId){
-                R.id.test1->{
-                    bundle = bundleOf("Selectiontype" to "test1")
+                R.id.primary->{
+                    bundle = bundleOf("Selectiontype" to SelectionType().primary)
                     nav.navigate(R.id.nav_selection, bundle)
                     true
                 }
-                R.id.test2->{
-                    bundle = bundleOf("Selectiontype" to "test2")
+                R.id.secondary->{
+                    bundle = bundleOf("Selectiontype" to SelectionType().secondary)
                     nav.navigate(R.id.nav_selection, bundle)
                     true
                 }
-                R.id.test3->{
-                    bundle = bundleOf("Selectiontype" to "test3")
+                R.id.melee->{
+                    bundle = bundleOf("Selectiontype" to SelectionType().melee)
+                    nav.navigate(R.id.nav_selection, bundle)
+                    true
+                }
+                R.id.archwing->{
+                    bundle = bundleOf("Selectiontype" to SelectionType().archwing)
                     nav.navigate(R.id.nav_selection, bundle)
                     true
                 }

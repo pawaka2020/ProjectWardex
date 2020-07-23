@@ -23,7 +23,7 @@ class SecondarySelectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val buttonlist = arrayOf("Single", "Dual", "Throwing" )
         //grid.adapter = ButtonGridAdapter(this.requireContext(), 0, buttonlist )
-        grid.adapter = ButtonGridAdapter2(this.requireContext(), R.layout.button, buttonlist)
+        //grid.adapter = ButtonGridAdapter2(this.requireContext(), R.layout.button, buttonlist)
     }
 
 }

@@ -1,10 +1,9 @@
 package com.rrdsolutions.projectwardex.repo
 
 import androidx.annotation.Keep
+import androidx.lifecycle.LiveData
+import kotlinx.coroutines.*
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -104,6 +103,14 @@ data class Category(
     var type:String
 )
 
+data class CategoryFetch(
+    // primary, meelee, etc
+    var category:String,
+    // bow, rifle, etc
+    var type: String
+)
+
+
 interface ApiClient {
     @GET(".")
     suspend fun getDog(): Response<Dog>
@@ -116,10 +123,13 @@ interface ApiClient {
 
     @GET(".")
     suspend fun getCategory():Response<List<Category>>
+
+    @GET(".")
+    suspend fun categoryFetch():Response<List<CategoryFetch>>
 }
 
-class RetrofitRepo(val url:String, val type: String = ""){
-    companion object ApiAdapter2{
+class RetrofitRepo(val url:String, val param: String = ""){
+    companion object ApiAdapter{
         lateinit var client:ApiClient
     }
     init{
@@ -178,7 +188,7 @@ class RetrofitRepo(val url:String, val type: String = ""){
                     val data = it.body()!!
 
                     for (elements in data){
-                        if(elements.type == type)
+                        if(elements.type == param)
                         result1.add(elements.name)
                     }
 
@@ -187,6 +197,43 @@ class RetrofitRepo(val url:String, val type: String = ""){
         }
         return result1
     }
+
+    fun categoryFetchTest():List<String>{
+        val result1 = mutableListOf<String>()
+        runBlocking{
+            client.categoryFetch().let{
+                if (it.isSuccessful && it.body()!= null){
+                    val data = it.body()!!
+
+                    for (elements in data){
+                        if(elements.category == param)
+                            result1.add(elements.type)
+                    }
+
+                }
+            }
+        }
+        return result1.distinct()
+    }
+
+    fun categoryFetch(callback:(List<String>)->Unit){
+        val result1 = mutableListOf<String>()
+        GlobalScope.launch{
+            client.categoryFetch().let{
+                if (it.isSuccessful && it.body()!= null){
+                    val data = it.body()!!
+                    for (elements in data){
+                        if(elements.category == param && elements.type!="")
+                            result1.add(elements.type)
+                    }
+                }
+            }
+            withContext(Dispatchers.Main) {
+                callback(result1.distinct())
+            }
+        }
+    }
+
 }
 
 

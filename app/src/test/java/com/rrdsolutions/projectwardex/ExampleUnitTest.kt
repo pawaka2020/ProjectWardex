@@ -3,6 +3,7 @@ package com.rrdsolutions.projectwardex
 import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.rrdsolutions.projectwardex.repo.RetrofitRepo
+import com.rrdsolutions.projectwardex.ui.selection.SelectionType
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -45,8 +46,29 @@ class RetrofitTest{
     @Test
     fun category(){
         val url = "https://api.warframestat.us/weapons/"
+        val url2 = "https://api.warframestat.us/items/"
         val result = RetrofitRepo(url, "Bow").getCategory()
         println(result)
     }
+    @Test
+    fun categoryfetch(){
+        val url = "https://api.warframestat.us/weapons/"
+        val url2 = "https://api.warframestat.us/items/"
+        val result = RetrofitRepo(url, "Primary").categoryFetchTest()
+        println(result)
+
+        //doesnt' work with Archwing. Might need to manually search.
+    }
+
+    @Test
+    fun x(){
+        val url = "https://api.warframestat.us/weapons/"
+        val url2 = "https://api.warframestat.us/items/"
+        RetrofitRepo(url, "Primary").categoryFetch(){result->
+            println(result)
+        }
+    }
+
+
 
 }

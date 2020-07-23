@@ -1,6 +1,5 @@
 package com.rrdsolutions.projectwardex.ui
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater.from
 import android.view.View
@@ -8,14 +7,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
-import androidx.navigation.Navigation
+import androidx.cardview.widget.CardView
+import androidx.gridlayout.widget.GridLayout
 import com.rrdsolutions.projectwardex.R
-import com.rrdsolutions.projectwardex.ui.primary.PrimaryFragment
+import kotlinx.android.synthetic.main.selectioncard.view.*
+import kotlinx.coroutines.CoroutineScope
 
 
 class ButtonGridAdapter
@@ -45,11 +41,11 @@ class ButtonGridAdapter
 
 }
 
-class ButtonGridAdapter2 (context: Context, private val resource: Int, private val itemList: Array<String>?)
+class ButtonGridAdapter2(context: Context, private val resource: Int, private val itemList: List<String>)
     : ArrayAdapter<ButtonGridAdapter2.Holder>(context, resource) {
 
     override fun getCount(): Int {
-        return if (this.itemList != null) this.itemList.size else 0
+        return this.itemList.size
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -66,7 +62,7 @@ class ButtonGridAdapter2 (context: Context, private val resource: Int, private v
             holder = cv.tag as Holder
         }
 
-        holder.button!!.text = this.itemList!![position]
+        holder.button!!.text = this.itemList[position]
         holder.button!!.setOnClickListener{
             //Navigation.createNavigateOnClickListener(R.id.toprimary).onClick(holder.button)
         }
@@ -77,4 +73,45 @@ class ButtonGridAdapter2 (context: Context, private val resource: Int, private v
     class Holder {
         var button: Button?= null
     }
+}
+
+class CardGridAdapter (context: Context, private val resource: Int, private val itemList: Array<String>?)
+    : ArrayAdapter<CardGridAdapter.Holder>(context, resource) {
+
+    override fun getCount(): Int {
+        return if (this.itemList != null) this.itemList.size else 0
+    }
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var cv = convertView
+        val holder: Holder
+
+        if (cv == null) {
+            cv = from(context).inflate(resource, null)
+            holder = Holder()
+            holder.cardview = cv!!.findViewById(R.id.card)
+            cv.tag = holder
+            cv.minimumHeight = 300
+        }
+        else {
+            holder = cv.tag as Holder
+        }
+
+        holder.cardview!!.textView.text = this.itemList!![position]
+        holder.cardview!!.setOnClickListener{
+            //Navigation.createNavigateOnClickListener(R.id.toprimary).onClick(holder.button)
+        }
+
+        cv.layoutParams = GridLayout.LayoutParams(ViewGroup.LayoutParams
+            (GridLayout.LayoutParams.MATCH_PARENT, 180))
+
+        return cv
+    }
+
+    class Holder {
+        var cardview: CardView?= null
+    }
+
+
+
 }
